@@ -4,9 +4,18 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
 
+import { useTheme } from "../context/ThemeProvider";
+
 const Home: NextPage = () => {
+  const theme = useTheme();
+  console.log("theme", theme?.isDark);
+
   return (
-    <div className="flex min-h-screen bg-gray-900">
+    <div
+      className={`flex min-h-screen ${
+        theme?.isDark ? "bg-gray-900" : "bg-white"
+      } `}
+    >
       <Head>
         <title>Crypto-job-list</title>
         <link rel="icon" href="/favicon.ico" />

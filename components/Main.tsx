@@ -2,6 +2,7 @@ import React from "react";
 
 import SearchBar from "../components/SearchBar";
 import JobCard from "../components/JobCard";
+import { useTheme } from "../context/ThemeProvider";
 
 const DATA = [
   {
@@ -14,7 +15,7 @@ const DATA = [
     id: 1,
     image: "https://cdn.svgporn.com/logos/airbnb-icon.svg",
     title: "Full Stack Developer at Airbnb",
-    TAGS: [
+    tags: [
       "Full Stack Developer",
       "Developer",
       "Node.js",
@@ -37,13 +38,22 @@ const DATA = [
 ];
 
 const Main = () => {
+  const theme = useTheme();
   return (
     <div className="pt-6">
-      <h1 className="text-[4rem] leading-tight font-semibold text-white">
+      <h1
+        className={`text-[4rem] leading-tight font-semibold ${
+          theme?.isDark ? "text-white" : "text-black"
+        }  `}
+      >
         The Web's Biggest List of Cryptocurrency Jobs, Web3 Jobs and Blockchain
         Jobs
       </h1>
-      <p className="text-gray-200 text-2xl py-2 leading-8">
+      <p
+        className={`${
+          theme?.isDark ? "text-gray-200" : "text-gray-800"
+        }  text-2xl py-2 leading-8`}
+      >
         Discover over 3148+ open Cryptocurrency Jobs, Web3 Jobs and Blockchain
         Jobs on CryptoJobsList — the #1 site to find and post jobs. Connect with
         companies hiring in a few clicks and begin your next experience in the

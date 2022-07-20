@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { MenuIcon, MoonIcon, UserIcon } from "@heroicons/react/solid";
+import { MenuIcon, MoonIcon, SunIcon, UserIcon } from "@heroicons/react/solid";
+import { useTheme } from "../context/ThemeProvider";
 
 const TABS = [
   {
@@ -26,6 +27,7 @@ const TABS = [
 
 const Navbar = () => {
   const [isActive, setActive] = useState(TABS[0]);
+  const theme = useTheme();
 
   return (
     <header className="flex items-center  justify-between">
@@ -37,7 +39,7 @@ const Navbar = () => {
             className={
               isActive.id === tab.id
                 ? `bg-gray-700 px-3 py-2 rounded-md`
-                : `px-3 py-2`
+                : `px-3 py-2  ${!theme?.isDark && "text-gray-800"}`
             }
             key={tab.id}
             onClick={() => setActive(tab)}
@@ -46,10 +48,37 @@ const Navbar = () => {
           </a>
         ))}
       </nav>
-      <div className="text-white flex items-center space-x-4">
-        <MenuIcon className="h-6 hover:bg-gray-500 cursor-pointer  w-8 rounded-md" />
-        <MoonIcon className="h-6 hover:bg-gray-500 cursor-pointer  w-8 rounded-md" />
-        <UserIcon className="h-6 hover:bg-gray-500 cursor-pointer  w-8 rounded-md" />
+      <div
+        className={`${
+          theme?.isDark ? "text-white" : "text-gray-600"
+        } flex items-center space-x-4`}
+      >
+        <div
+          className={`${
+            theme?.isDark ? "hover:bg-gray-500" : "hover:bg-gray-300"
+          }   cursor-pointer h-8 grid place-items-center w-8 rounded-md`}
+        >
+          <MenuIcon className="h-6 w-6" />
+        </div>
+        <div
+          className={`${
+            theme?.isDark ? "hover:bg-gray-500" : "hover:bg-gray-300"
+          }   cursor-pointer h-8 grid place-items-center w-8 rounded-md`}
+          onClick={theme?.toggleTheme}
+        >
+          {theme?.isDark ? (
+            <SunIcon className="h-6 w-6" />
+          ) : (
+            <MoonIcon className="h-6 w-6" />
+          )}
+        </div>
+        <div
+          className={`${
+            theme?.isDark ? "hover:bg-gray-500" : "hover:bg-gray-300"
+          }   cursor-pointer h-8 grid place-items-center w-8 rounded-md`}
+        >
+          <UserIcon className="h-6 w-6" />
+        </div>
         <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium">
           Post Jobs
         </button>
