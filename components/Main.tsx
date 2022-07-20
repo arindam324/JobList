@@ -3,41 +3,15 @@ import React from "react";
 import SearchBar from "../components/SearchBar";
 import JobCard from "../components/JobCard";
 import { useTheme } from "../context/ThemeProvider";
+import { Job } from ".prisma/client";
 
-const DATA = [
-  {
-    id: 0,
-    image: "https://cdn.svgporn.com/logos/kibana.svg",
-    title: "Backend Enginner at Kibana  organizations",
-    tags: ["Backend Engineer", "Developer", "Manager", "Node.js"],
-  },
-  {
-    id: 1,
-    image: "https://cdn.svgporn.com/logos/airbnb-icon.svg",
-    title: "Full Stack Developer at Airbnb",
-    tags: [
-      "Full Stack Developer",
-      "Developer",
-      "Node.js",
-      "Typescript",
-      "React.js",
-    ],
-  },
-  {
-    id: 2,
-    image: "https://cdn.svgporn.com/logos/cloudinary.svg",
-    title: "Developer advlocate at Cloudinary",
-    tags: ["Developer", "Git", "Node.js", "Typescript"],
-  },
-  {
-    id: 3,
-    image: "https://cdn.svgporn.com/logos/openai-icon.svg",
-    title: "Machine Learning Engineer at OpenAI",
-    tags: ["Machine Learning Engineer", "Developer", "tensorflow", "keras"],
-  },
-];
+interface Data extends Job {
+  company: {
+    image: string;
+  };
+}
 
-const Main = () => {
+const Main: React.FC<{ Data: Data[] }> = ({ Data }) => {
   const theme = useTheme();
   return (
     <div className="pt-6">
@@ -70,11 +44,11 @@ const Main = () => {
           </select>
         </div>
         <div className="my-4 space-y-8">
-          {DATA.map((item) => (
+          {Data.map((item) => (
             <JobCard
               key={item.id}
               title={item.title}
-              image={item.image}
+              image={item.company.image}
               tags={item.tags}
             />
           ))}

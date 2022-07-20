@@ -3,12 +3,14 @@ import Head from "next/head";
 
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
+import Layout from "../components/Layout";
+
+import prisma from "../lib/Prisma";
 
 import { useTheme } from "../context/ThemeProvider";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ jobs }) => {
   const theme = useTheme();
-  console.log("theme", theme?.isDark);
 
   return (
     <div
@@ -21,12 +23,33 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full py-4 min-h-screen max-w-5xl mx-auto ">
+      <Layout>
         <Navbar />
-        <Main />
-      </main>
+        <Main Data={jobs} />
+      </Layout>
     </div>
   );
+};
+
+export const getServerSideProps = async () => {
+  const jobs = await prisma.job.findMany({
+    select: {
+      id: true,
+      title: true,
+      company: {
+        select: {
+          image: true,
+        },
+      },
+      tags: true,
+    },
+  });
+
+  return {
+    props: {
+      jobs,
+    },
+  };
 };
 
 export default Home;
