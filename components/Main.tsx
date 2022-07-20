@@ -5,7 +5,7 @@ import JobCard from "../components/JobCard";
 import { useTheme } from "../context/ThemeProvider";
 import { Job } from ".prisma/client";
 
-interface Data extends Job {
+export interface Data extends Job {
   company: {
     image: string;
   };

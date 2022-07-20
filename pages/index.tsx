@@ -2,14 +2,13 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import Navbar from "../components/Navbar";
-import Main from "../components/Main";
+import Main, { Data } from "../components/Main";
 import Layout from "../components/Layout";
 
 import prisma from "../lib/Prisma";
-
 import { useTheme } from "../context/ThemeProvider";
 
-const Home: NextPage = ({ jobs }) => {
+const Home: NextPage<{ jobs: Data[] }> = ({ jobs }) => {
   const theme = useTheme();
 
   return (
