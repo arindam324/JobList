@@ -2,7 +2,7 @@ import { SearchIcon, PaperAirplaneIcon } from "@heroicons/react/solid";
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center placeholder-white rounded-md text-white p-4 bg-gradient-to-br from-purple-600 to-indigo-700">
+    <div className="flex  my-2 space-x-2 items-center placeholder-white rounded-md text-white p-4 bg-gradient-to-br from-purple-600 to-indigo-700">
       <div className="w-1/2 flex items-center px-2 rounded-md bg-gray-900">
         <SearchIcon className="h-6 w-6 " />
         <input

@@ -1,6 +1,40 @@
 import React from "react";
 
 import SearchBar from "../components/SearchBar";
+import JobCard from "../components/JobCard";
+
+const DATA = [
+  {
+    id: 0,
+    image: "https://cdn.svgporn.com/logos/kibana.svg",
+    title: "Backend Enginner at Kibana  organizations",
+    tags: ["Backend Engineer", "Developer", "Manager", "Node.js"],
+  },
+  {
+    id: 1,
+    image: "https://cdn.svgporn.com/logos/airbnb-icon.svg",
+    title: "Full Stack Developer at Airbnb",
+    TAGS: [
+      "Full Stack Developer",
+      "Developer",
+      "Node.js",
+      "Typescript",
+      "React.js",
+    ],
+  },
+  {
+    id: 2,
+    image: "https://cdn.svgporn.com/logos/cloudinary.svg",
+    title: "Developer advlocate at Cloudinary",
+    tags: ["Developer", "Git", "Node.js", "Typescript"],
+  },
+  {
+    id: 3,
+    image: "https://cdn.svgporn.com/logos/openai-icon.svg",
+    title: "Machine Learning Engineer at OpenAI",
+    tags: ["Machine Learning Engineer", "Developer", "tensorflow", "keras"],
+  },
+];
 
 const Main = () => {
   return (
@@ -16,6 +50,26 @@ const Main = () => {
         industry.
       </p>
       <SearchBar />
+
+      <div className="w-full my-4">
+        <div className="flex items-center text-gray-500 justify-between">
+          <p>333 active jobs . page 1-17</p>
+          <select className="bg-gray-900 text-white">
+            <option value={"Recent"}>Reccent</option>
+            <option value="relevance">Relevance</option>
+          </select>
+        </div>
+        <div className="my-4 space-y-8">
+          {DATA.map((item) => (
+            <JobCard
+              key={item.id}
+              title={item.title}
+              image={item.image}
+              tags={item.tags}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
