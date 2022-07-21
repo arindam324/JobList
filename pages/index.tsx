@@ -10,6 +10,7 @@ import { useTheme } from "../context/ThemeProvider";
 
 const Home: NextPage<{ jobs: Data[] }> = ({ jobs }) => {
   const theme = useTheme();
+  console.log(jobs);
 
   return (
     <div
@@ -30,7 +31,7 @@ const Home: NextPage<{ jobs: Data[] }> = ({ jobs }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const jobs = await prisma.job.findMany({
     select: {
       id: true,
