@@ -96,7 +96,7 @@ const JobView: React.FC<{ job: NewDataType }> = ({ job }) => {
 
 export default JobView;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: { query: { slug: string } }) {
   const { slug } = context.query;
 
   const job = await Prisma.job.findFirst({
