@@ -7,10 +7,10 @@ import Layout from "../components/Layout";
 
 import prisma from "../lib/Prisma";
 import { useTheme } from "../context/ThemeProvider";
+import LoadingProvider from "../context/LoadingContext";
 
 const Home: NextPage<{ jobs: Data[] }> = ({ jobs }) => {
   const theme = useTheme();
-  console.log(jobs);
 
   return (
     <div
@@ -22,11 +22,12 @@ const Home: NextPage<{ jobs: Data[] }> = ({ jobs }) => {
         <title>Crypto-job-list</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Layout>
-        <Navbar />
-        <Main Data={jobs} />
-      </Layout>
+      <LoadingProvider>
+        <Layout>
+          <Navbar />
+          <Main Data={jobs} />
+        </Layout>
+      </LoadingProvider>
     </div>
   );
 };

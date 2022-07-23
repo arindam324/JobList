@@ -21,12 +21,12 @@ const TABS = [
     href: "/",
   },
   {
-    id: 4,
+    id: 3,
     name: "Companies",
     href: "/",
   },
   {
-    id: 5,
+    id: 4,
     name: "Twitter",
     href: "/",
   },
@@ -41,7 +41,7 @@ const Navbar = () => {
       <h1 className="text-3xl font-bold text-blue-600">CryptoJob</h1>
       <nav className="space-x-8 text-lg font-medium text-white">
         {TABS.map((tab) => (
-          <Link href={tab.href}>
+          <Link key={tab.id} href={tab.href}>
             <a
               href={`#${tab.name}`}
               className={
@@ -49,7 +49,6 @@ const Navbar = () => {
                   ? `bg-gray-700 px-3 py-2 rounded-md`
                   : `px-3 py-2  ${!theme?.isDark && "text-gray-800"}`
               }
-              key={tab.id}
               onClick={() => setActive(tab)}
             >
               {tab.name}
