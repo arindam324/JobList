@@ -13,12 +13,12 @@ type JobCardProps = {
 const JobCard: React.FC<JobCardProps> = ({ image, title, tags }) => {
   const theme = useTheme();
 
-  const router = useRouter();
   const loadingContext = useLoading();
+  const router = useRouter();
 
   const handleRouter = () => {
     router.push(`/jobs/${title}`);
-    loadingContext?.ref?.current.continuousStart();
+    loadingContext?.continue();
   };
 
   return (
