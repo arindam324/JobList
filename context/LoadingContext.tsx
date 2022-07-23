@@ -12,6 +12,7 @@ import { LoadingBarRef } from "react-top-loading-bar";
 const LoadingContext = createContext<{
   ref: Ref<LoadingBarRef>;
   continue: () => void;
+  complete: () => void;
 } | null>(null);
 
 const LoadingProvider = ({ children }: { children: ReactNode }) => {
@@ -20,9 +21,14 @@ const LoadingProvider = ({ children }: { children: ReactNode }) => {
   const continues = () => {
     ref?.current?.continuousStart(0, 100);
   };
+  const complete = () => {
+    ref?.current?.complete();
+  };
 
   return (
-    <LoadingContext.Provider value={{ ref: ref, continue: continues }}>
+    <LoadingContext.Provider
+      value={{ ref: ref, continue: continues, complete: complete }}
+    >
       {children}
     </LoadingContext.Provider>
   );

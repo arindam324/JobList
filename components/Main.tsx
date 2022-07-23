@@ -38,7 +38,11 @@ const Main: React.FC<{ Data: Data[] }> = ({ Data }) => {
       <div className="w-full my-4">
         <div className="flex items-center text-gray-500 justify-between">
           <p>333 active jobs . page 1-17</p>
-          <select className="bg-gray-900 text-white">
+          <select
+            className={` ${
+              theme?.isDark ? "bg-gray-900 text-white" : "bg-gray-200 "
+            } `}
+          >
             <option value={"Recent"}>Reccent</option>
             <option value="relevance">Relevance</option>
           </select>
